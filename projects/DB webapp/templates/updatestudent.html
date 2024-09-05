@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Update Student{% endblock %}
+{% block body %}
+    <h1>Update Student</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="/updatestudent/{{ student.stu_id }}">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ student.stu_name }}" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ student.stu_email }}"><br>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" value="{{ student.stu_phone }}"><br>
+        <label for="year_grad">Year Graduated:</label>
+        <input type="text" id="year_grad" name="year_grad" value="{{ student.stu_year_grad }}"><br>
+        <label for="degree">Degree Graduated:</label>
+        <input type="text" id="degree" name="degree" value="{{ student.stu_degree }}"><br>
+
+        <button type="submit">Update Student</button>
+    </form>
+{% endblock %}
+
