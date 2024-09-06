@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Student Profile{% endblock %}
+{% block body %}
+    <h1>Student info:</h1>
+    <p>Student Name: {{ student.name }}</p>
+    <p>Phone: {{ student.phone }}</p>
+    <p>Email: {{ student.email }}</p>
+    <p>Graduation Year: {{ student.year_grad }}</p>
+    <p>Degree: {{ student.degree }}</p>
+
+    <h2>Application info:</h2>
+    <p>School Name: {{ student.school_name }}</p>
+    <p>School Type: {{ student.school_type }}</p>
+    <p>Year Applied: {{ student.year_applied }}</p>
+    <p>Accepted: {% if student.accepted == 1 %}Yes{% elif student.accepted == 0 %}No{% else %}NULL{% endif %}</p>
+
+    <h2>Comments:</h2>
+    <ul>
+    {% for comment in student.comments %}
+        <li>{{ comment[0] }}</li>
+    {% endfor %}
+    </ul>
+
+    <form method="post" action="{{ url_for('add_comment', stu_id=student.id) }}">
+        <label for="comment">Add Comment:</label>
+        <textarea id="comment" name="comment" required></textarea>
+        <button type="submit">Submit Comment</button>
+    </form>
+
+    <a href="{{ url_for('updatestudent', stu_id=student.id) }}" class="btn">Update</a>
+
+    <script>
+
+    </script>
+{% endblock %}
